@@ -1,0 +1,19 @@
+AppBundle\Entity\Activity:
+    type: entity
+    table: activity
+    repositoryClass: AppBundle\Repository\ActivityRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        title:
+            type: stringgit add
+            length: '150'
+        description:
+            type: text
+            length: 255
+            nullable: true
+    lifecycleCallbacks: {  }
