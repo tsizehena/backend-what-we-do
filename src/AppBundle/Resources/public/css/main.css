@@ -1,3 +1,18 @@
 input.note_size {
     width: 100px;
 }
+
+span[id^="field_widget"][id$="_notes"] table {
+    width: 50%;
+}
+
+span[id^="field_widget"][id$="_notes"] table thead tr th:first-child,
+span[id^="field_widget"][id$="_notes"] table tbody tr td:first-child {
+    width: 10%;
+}
+
+
+
+span[id^="field_widget"][id$="_notes"] table tbody tr td:last-child {
+    width: 20%;
+}

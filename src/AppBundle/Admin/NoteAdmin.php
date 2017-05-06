@@ -22,11 +22,17 @@ class NoteAdmin extends AbstractAdmin
             ->add('value', 'integer', array(
                 'label' => 'Valeur',
                 'attr' => array(
-                    'class' => 'note_size'
+                    'class' => 'note_size',
+                    'readonly' => true
                 )
             ))
             ->add('description', 'text', array(
                 'label' => 'Libelle'
+            ))
+            // We use "hidden" because "button" isn't work in Sonata
+            ->add('delete', 'hidden', array(
+                'label' => '',
+                'mapped' => false
             ));
 
     }
