@@ -47,4 +47,13 @@ class User extends BaseUser
     public function setPentagramme($pentagramme) {
         $this->pentagramme = $pentagramme;
     }
+
+    /**
+     * Many Users have Many Communities
+     */
+    private $communities;
+
+    public function __construct() {
+        $this->communities = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 }

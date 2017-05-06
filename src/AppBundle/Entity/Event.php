@@ -5,9 +5,9 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Activity
+ * Event
  */
-class Activity
+class Event
 {
     /**
      * @var int
@@ -18,6 +18,12 @@ class Activity
      * @var string
      */
     private $title;
+
+    /**
+     * @var string
+     */
+    private $description;
+
 
     /**
      * Get id
@@ -33,7 +39,7 @@ class Activity
      * Set title
      *
      * @param string $title
-     * @return Activity
+     * @return Event
      */
     public function setTitle($title)
     {
@@ -51,17 +57,12 @@ class Activity
     {
         return $this->title;
     }
-    /**
-     * @var string
-     */
-    private $description;
-
 
     /**
      * Set description
      *
      * @param string $description
-     * @return Activity
+     * @return Event
      */
     public function setDescription($description)
     {
@@ -78,9 +79,5 @@ class Activity
     public function getDescription()
     {
         return $this->description;
-    }
-
-    public function getName() {
-        return $this->title;
     }
 }

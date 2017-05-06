@@ -5,10 +5,30 @@ parameters:
 
 services:
     admin.activity:
-        class: AppBundle\Admin\ActivityAdmin
-        arguments: [~, AppBundle\Entity\Activity, ~]
+        class: AppBundle\Admin\ChoiceAdmin
+        arguments: [~, AppBundle\Entity\Choice, ~]
         tags:
-            - {name: sonata.admin, manager_type: orm, label: Activités }
+            - {name: sonata.admin, manager_type: orm, label: Choix }
+    admin.community:
+        class: AppBundle\Admin\CommunityAdmin
+        arguments: [~, AppBundle\Entity\Community, ~]
+        tags:
+            - {name: sonata.admin, manager_type: orm, label: Communautés}
+    admin.participant:
+        class: AppBundle\Admin\ParticipantAdmin
+        arguments: [~, AppBundle\Entity\Participant, ~]
+        tags:
+            - {name: sonata.admin, manager_type: orm, label: Participants}
+    admin.event:
+        class: AppBundle\Admin\EventAdmin
+        arguments: [~, AppBundle\Entity\Event, ~]
+        tags:
+            - {name: sonata.admin, manager_type: orm, label: Evénements}
+    admin.note:
+        class: AppBundle\Admin\NoteAdmin
+        arguments: [~, AppBundle\Entity\Note, ~]
+        tags:
+            - {name: sonata.admin, manager_type: orm, label: Notes}
     #sonata.user.admin.user:
      #   class: Application\Sonata\UserBundle\Admin\UserAdmin
       #  arguments: [~, Application\Sonata\UserBundle\Entity\User, ~]

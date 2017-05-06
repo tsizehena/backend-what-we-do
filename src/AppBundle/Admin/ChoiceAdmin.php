@@ -13,11 +13,13 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 
-class ActivityAdmin extends AbstractAdmin
+class ChoiceAdmin extends AbstractAdmin
 {
     protected function configureFormFields(FormMapper $formMapper)
     {
-        $formMapper->add('title')->add('description');
+        $formMapper
+            ->add('title')
+            ->add('description');
 
     }
 

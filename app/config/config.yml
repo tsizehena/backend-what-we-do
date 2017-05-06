@@ -25,8 +25,8 @@ framework:
     trusted_hosts: ~
     trusted_proxies: ~
     session:
-        # handler_id set to null will use default session handler from php.ini
-        handler_id: ~
+        handler_id: session.handler.native_file
+        save_path: '%kernel.root_dir%/sessions'
     fragments: ~
     http_method_override: true
 
@@ -90,12 +90,6 @@ sonata_admin:
     title_logo: bundles/app/images/sports.png
     dashboard:
         groups:
-            activity.admin.main:
-                label: Gérer les activités
-                label_catalogue: AppBundle
-                icon: '<i class="fa fa-database"></i>'
-                items:
-                    - admin.activity
             sonata.user.admin:
                 on_top: true
                 label: Utilisateurs
@@ -105,6 +99,15 @@ sonata_admin:
                     #- sonata.user.admin.group
                     - sonata.user.admin.user
                 roles: [ ROLE_ADMIN ]
+            activity.admin.main:
+                label: Gérer les activités
+                label_catalogue: AppBundle
+                icon: '<i class="fa fa-database"></i>'
+                items:
+                    - admin.activity
+                    - admin.participant
+                    - admin.community
+                    - admin.event
 
 sonata_user:
     security_acl: true

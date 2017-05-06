@@ -10,6 +10,7 @@
             <generator strategy="AUTO" />
         </id>
         <field name="pentagramme" type="string" column="pentagramme" length="255" nullable="true"/>
+        <many-to-many field="communities" mapped-by="organizers" target-entity="AppBundle\Entity\Community"/>
     </entity>
 
 </doctrine-mapping>

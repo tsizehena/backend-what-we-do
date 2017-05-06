@@ -48,9 +48,9 @@ class UserAdmin extends \Sonata\UserBundle\Admin\Model\UserAdmin
         $rolesChoices = self::flattenRoles($roles, $excludedRoles);
         $formMapper->end()->tab('Security')
             ->with('Roles', array('class' => 'col-md-8'))
-                ->add('roles','choice',array(
+                ->add('roles','choice', array(
                     'choices' =>  $rolesChoices,
-                    'multiple'=>true,
+                    'multiple'=> true,
                     'expanded' => true,
                     'required' => false
                     ))

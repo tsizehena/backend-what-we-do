@@ -6,9 +6,10 @@
 !app/cache/.gitkeep
 !app/logs/.gitkeep
 /app/phpunit.xml
+/app/sessions
 /build/
 /vendor/
 /bin/
 /composer.phar
 .idea/
-bower_components/*
+/bower_components/*
