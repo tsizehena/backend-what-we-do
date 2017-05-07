@@ -34,6 +34,9 @@ framework:
 twig:
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
+    form:
+        resources:
+            - 'SonataCoreBundle:Form:datepicker.html.twig'
 
 # Doctrine Configuration
 doctrine:
@@ -92,7 +95,7 @@ sonata_admin:
         groups:
             sonata.user.admin:
                 on_top: true
-                label: Utilisateurs
+                label: menu.item.users
                 label_catalogue: ~
                 icon: '<i class="fa fa-user"></i>'
                 items:

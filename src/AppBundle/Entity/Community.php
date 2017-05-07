@@ -30,12 +30,13 @@ class Community
     private $organizers;
 
     /**
-     *  Many Communities have Many choices.
+     *  Many Communities have Many Choices.
      * @var \Doctrine\Common\Collections\ArrayCollection();
      */
     private $choices;
 
     /**
+     *  Many Communities have Many Participants
      *  @var \Doctrine\Common\Collections\ArrayCollection();
      */
     private $participants;
@@ -46,6 +47,14 @@ class Community
      */
     private $notes;
 
+    /**
+     * One Community has Many Events.
+     */
+    private $events;
+
+    /**
+     * Community constructor.
+     */
     public function __construct() {
         $this->organizers = new \Doctrine\Common\Collections\ArrayCollection();
         $this->choices = new \Doctrine\Common\Collections\ArrayCollection();
@@ -306,5 +315,38 @@ class Community
     public function preUpdate($community)
     {
         $community->setNotes($community->getNotes());
+    }
+
+    /**
+     * Add events
+     *
+     * @param \AppBundle\Entity\Event $events
+     * @return Community
+     */
+    public function addEvent(\AppBundle\Entity\Event $events)
+    {
+        $this->events[] = $events;
+
+        return $this;
+    }
+
+    /**
+     * Remove events
+     *
+     * @param \AppBundle\Entity\Event $events
+     */
+    public function removeEvent(\AppBundle\Entity\Event $events)
+    {
+        $this->events->removeElement($events);
+    }
+
+    /**
+     * Get events
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getEvents()
+    {
+        return $this->events;
     }
 }

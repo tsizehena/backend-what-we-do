@@ -8,27 +8,27 @@ services:
         class: AppBundle\Admin\ChoiceAdmin
         arguments: [~, AppBundle\Entity\Choice, ~]
         tags:
-            - {name: sonata.admin, manager_type: orm, label: Choix }
+            - {name: sonata.admin, manager_type: orm, label: menu.item.choices }
     admin.community:
         class: AppBundle\Admin\CommunityAdmin
         arguments: [~, AppBundle\Entity\Community, ~]
         tags:
-            - {name: sonata.admin, manager_type: orm, label: Communautés}
+            - {name: sonata.admin, manager_type: orm, label: menu.item.communities}
     admin.participant:
         class: AppBundle\Admin\ParticipantAdmin
         arguments: [~, AppBundle\Entity\Participant, ~]
         tags:
-            - {name: sonata.admin, manager_type: orm, label: Participants}
+            - {name: sonata.admin, manager_type: orm, label: menu.item.participants}
     admin.event:
         class: AppBundle\Admin\EventAdmin
         arguments: [~, AppBundle\Entity\Event, ~]
         tags:
-            - {name: sonata.admin, manager_type: orm, label: Evénements}
+            - {name: sonata.admin, manager_type: orm, label: menu.item.events}
     admin.note:
         class: AppBundle\Admin\NoteAdmin
         arguments: [~, AppBundle\Entity\Note, ~]
         tags:
-            - {name: sonata.admin, manager_type: orm, label: Notes}
+            - {name: sonata.admin, manager_type: orm, label: menu.item.notes}
     #sonata.user.admin.user:
      #   class: Application\Sonata\UserBundle\Admin\UserAdmin
       #  arguments: [~, Application\Sonata\UserBundle\Entity\User, ~]

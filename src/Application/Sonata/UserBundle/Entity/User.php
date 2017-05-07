@@ -14,10 +14,6 @@ namespace Application\Sonata\UserBundle\Entity;
 use Sonata\UserBundle\Entity\BaseUser as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 
-/**
- * @ORM\Entity
- * @ORM\Table(name="fos_user_user")
- */
 class User extends BaseUser
 {
     /**
@@ -26,7 +22,6 @@ class User extends BaseUser
     protected $id;
 
     /**
-     * @ORM\Column(type="string")
      */
     protected $pentagramme = "";
 
@@ -54,6 +49,7 @@ class User extends BaseUser
     private $communities;
 
     public function __construct() {
+        parent::__construct();
         $this->communities = new \Doctrine\Common\Collections\ArrayCollection();
     }
 }

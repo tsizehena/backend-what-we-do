@@ -1,4 +1,18 @@
+menu:
+    item:
+        users: Users
+        manage_activities: Manage activities
+        choices: Choices
+        participants: Participants
+        communities: Communauties
+        events: Events
+        notes: Notes
 form:
     user:
         profile:
             penta: Penta
+    event:
+        title: Title
+        description: Description
+        campaign_begin: Start date of the campaign
+        campaign_end: End date of the campaign
