@@ -13,6 +13,6 @@ form:
             penta: Pentagramme
     event:
         title: Titre
-        description: Déscription
+        description: Description
         campaign_begin: Date de début de la campagne
         campaign_end: Date de fin de la campagne

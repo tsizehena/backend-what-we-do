@@ -53,37 +53,4 @@ class User extends BaseUser
         parent::__construct();
         $this->communities = new \Doctrine\Common\Collections\ArrayCollection();
     }
-
-    /**
-     * Add communities
-     *
-     * @param \AppBundle\Entity\Community $communities
-     * @return User
-     */
-    public function addCommunity(\AppBundle\Entity\Community $communities)
-    {
-        $this->communities[] = $communities;
-
-        return $this;
-    }
-
-    /**
-     * Remove communities
-     *
-     * @param \AppBundle\Entity\Community $communities
-     */
-    public function removeCommunity(\AppBundle\Entity\Community $communities)
-    {
-        $this->communities->removeElement($communities);
-    }
-
-    /**
-     * Get communities
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getCommunities()
-    {
-        return $this->communities;
-    }
 }

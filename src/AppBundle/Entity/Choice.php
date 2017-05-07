@@ -24,8 +24,14 @@ class Choice
      */
     private $description;
 
+    /**
+    * Many Choices have Many Communities
+    */
+    private $communities;
+
 
     public function __construct() {
+        $this->communities = new \Doctrine\Common\Collections\ArrayCollection();
     }
     /**
      * Get id
@@ -81,5 +87,38 @@ class Choice
     public function getDescription()
     {
         return $this->description;
+    }
+
+    /**
+     * Add communities
+     *
+     * @param \AppBundle\Entity\Community $communities
+     * @return Choice
+     */
+    public function addCommunity(\AppBundle\Entity\Community $communities)
+    {
+        $this->communities[] = $communities;
+
+        return $this;
+    }
+
+    /**
+     * Remove communities
+     *
+     * @param \AppBundle\Entity\Community $communities
+     */
+    public function removeCommunity(\AppBundle\Entity\Community $communities)
+    {
+        $this->communities->removeElement($communities);
+    }
+
+    /**
+     * Get communities
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getCommunities()
+    {
+        return $this->communities;
     }
 }
