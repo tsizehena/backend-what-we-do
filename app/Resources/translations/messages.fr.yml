@@ -8,11 +8,12 @@ menu:
         events: Evénements
         notes: Notes
 form:
+    title: Titre
+    description: Description
     user:
         profile:
             penta: Pentagramme
     event:
-        title: Titre
-        description: Description
+        community: Communauté
         campaign_begin: Date de début de la campagne
         campaign_end: Date de fin de la campagne

@@ -1,0 +1,14 @@
+{% extends 'SonataAdminBundle:CRUD:base_edit.html.twig' %}
+
+{% block actions %}
+{% endblock %}
+{% block form %}
+    {{ form_start(form) }}
+    <div class="input-group">
+        {{ form_row(form.community) }}
+        <div class="input-group-btn">
+            {{ form_row(form.submit) }}
+        </div>
+    </div>
+    {{ form_end(form) }}
+{% endblock %}

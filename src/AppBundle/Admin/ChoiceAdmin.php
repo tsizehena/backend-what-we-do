@@ -18,8 +18,12 @@ class ChoiceAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('title')
-            ->add('description');
+            ->add('title', null, array(
+                'label' => 'form.title'
+            ))
+            ->add('description', null, array(
+                'label' => 'form.title'
+            ));
 
     }
 

@@ -18,9 +18,15 @@ use Symfony\Component\Form\FormEvents;
 use AppBundle\Entity\Community;
 use AppBundle\Entity\Choice;
 use AppBundle\Repository\ChoiceRepository;
+use Sonata\AdminBundle\Route\RouteCollection;
 
 class EventAdmin extends AbstractAdmin
 {
+    protected function configureRoutes(RouteCollection $collection)
+    {
+        $collection->add('community');
+    }
+
     protected function configureFormFields(FormMapper $formMapper)
     {
         $container = $this->getConfigurationPool()->getContainer();
@@ -29,16 +35,16 @@ class EventAdmin extends AbstractAdmin
         $community = sizeof($communities) > 0 ? $communities->first() : null;
         $formMapper
             ->add('community', 'entity', array(
-                'label' => 'Communauté',
+                'label' => 'form.event.community',
                 'class' => 'AppBundle:Community',
                 'choice_label' => 'title',
                 'required' => true
             ))
             ->add('title', 'text', array(
-                'label' => 'form.event.title'
+                'label' => 'form.title'
             ))
             ->add('description', null, array(
-                'label' => 'form.event.description',
+                'label' => 'form.description',
                 'required' => false
             ))
             ->add('campaign_begin', 'sonata_type_date_picker', array(

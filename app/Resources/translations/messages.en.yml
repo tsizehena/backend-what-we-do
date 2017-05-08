@@ -8,11 +8,12 @@ menu:
         events: Events
         notes: Notes
 form:
+    title: Title
+    description: Description
     user:
         profile:
             penta: Penta
     event:
-        title: Title
-        description: Description
+        community: Community
         campaign_begin: Start date of the campaign
         campaign_end: End date of the campaign
