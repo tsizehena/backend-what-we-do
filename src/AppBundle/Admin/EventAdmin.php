@@ -165,7 +165,6 @@ class EventAdmin extends AbstractAdmin
             if($community instanceof Community == true && (!is_null($data) && is_null($data->getId()))) {
                 $form->get('participants')->setData($community->getParticipants());
                 $form->get('community')->setData($community);
-                dump($community->getId());
             }
         };
 
