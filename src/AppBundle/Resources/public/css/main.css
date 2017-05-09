@@ -11,8 +11,10 @@ span[id^="field_widget"][id$="_notes"] table tbody tr td:first-child {
     width: 10%;
 }
 
-
-
 span[id^="field_widget"][id$="_notes"] table tbody tr td:last-child {
     width: 20%;
+}
+
+div.input-group label[for="form_community"] {
+    display: none;
 }

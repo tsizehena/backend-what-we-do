@@ -1,9 +1,14 @@
 {% extends 'SonataAdminBundle:CRUD:base_edit.html.twig' %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/app/css/main.css') }}"/>
+{% endblock %}
 {% block actions %}
 {% endblock %}
 {% block form %}
     {{ form_start(form) }}
+    {{ form_label(form.community) }}
     <div class="input-group">
         {{ form_row(form.community) }}
         <div class="input-group-btn">

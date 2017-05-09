@@ -18,9 +18,17 @@ class ParticipantAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('email')
-            ->add('firstname')
-            ->add('lastname');
+            ->add('email', 'email', array(
+                'label' => 'form.participant.email'
+            ))
+            ->add('firstname', 'text', array(
+                'label' => 'form.participant.firstname',
+                'required' => false
+            ))
+            ->add('lastname', 'text', array(
+                'label' => 'form.participant.lastname',
+                'required' => false
+            ));
 
     }
 

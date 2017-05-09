@@ -22,9 +22,13 @@ class ChoiceAdmin extends AbstractAdmin
                 'label' => 'form.title'
             ))
             ->add('description', null, array(
-                'label' => 'form.title'
+                'label' => 'form.description'
+            ))
+            // We use input type "hidden" to placeholder delete button because input type button isn't work in sonata
+            ->add('delete', 'hidden', array(
+                'label' => '',
+                'mapped' => false
             ));
-
     }
 
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)

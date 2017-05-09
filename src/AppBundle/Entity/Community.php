@@ -126,6 +126,7 @@ class Community
      */
     public function addChoice(\AppBundle\Entity\Choice $choices)
     {
+        $choices->setCommunity($this);
         $this->choices[] = $choices;
 
         return $this;
@@ -138,7 +139,13 @@ class Community
      */
     public function removeChoice(\AppBundle\Entity\Choice $choices)
     {
-        $this->choices->removeElement($choices);
+        //$this->choices->removeElement($choices);
+        if ($this->choices->contains($choices)) {
+            $this->choices->removeElement($choices);
+        }
+        $choices->setCommunity(null);
+
+        return $this;
     }
 
     /**
@@ -215,62 +222,6 @@ class Community
     public function getOrganizers()
     {
         return $this->organizers;
-    }
-    /**
-     * @var integer
-     */
-    private $noteMin;
-
-    /**
-     * @var integer
-     */
-    private $noteMax;
-
-
-    /**
-     * Set noteMin
-     *
-     * @param integer $noteMin
-     * @return Community
-     */
-    public function setNoteMin($noteMin)
-    {
-        $this->noteMin = $noteMin;
-
-        return $this;
-    }
-
-    /**
-     * Get noteMin
-     *
-     * @return integer 
-     */
-    public function getNoteMin()
-    {
-        return $this->noteMin;
-    }
-
-    /**
-     * Set noteMax
-     *
-     * @param integer $noteMax
-     * @return Community
-     */
-    public function setNoteMax($noteMax)
-    {
-        $this->noteMax = $noteMax;
-
-        return $this;
-    }
-
-    /**
-     * Get noteMax
-     *
-     * @return integer 
-     */
-    public function getNoteMax()
-    {
-        return $this->noteMax;
     }
 
     /**

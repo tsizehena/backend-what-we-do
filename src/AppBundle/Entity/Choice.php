@@ -25,13 +25,12 @@ class Choice
     private $description;
 
     /**
-    * Many Choices have Many Communities
-    */
-    private $communities;
+     * Many Choices have One Community.
+     */
+    private $community;
 
 
     public function __construct() {
-        $this->communities = new \Doctrine\Common\Collections\ArrayCollection();
     }
     /**
      * Get id
@@ -89,36 +88,30 @@ class Choice
         return $this->description;
     }
 
+    public function __toString() {
+        return $this->title;
+    }
+
     /**
-     * Add communities
+     * Set community
      *
-     * @param \AppBundle\Entity\Community $communities
+     * @param \AppBundle\Entity\Community $community
      * @return Choice
      */
-    public function addCommunity(\AppBundle\Entity\Community $communities)
+    public function setCommunity(\AppBundle\Entity\Community $community = null)
     {
-        $this->communities[] = $communities;
+        $this->community = $community;
 
         return $this;
     }
 
     /**
-     * Remove communities
+     * Get community
      *
-     * @param \AppBundle\Entity\Community $communities
+     * @return \AppBundle\Entity\Community 
      */
-    public function removeCommunity(\AppBundle\Entity\Community $communities)
+    public function getCommunity()
     {
-        $this->communities->removeElement($communities);
-    }
-
-    /**
-     * Get communities
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getCommunities()
-    {
-        return $this->communities;
+        return $this->community;
     }
 }

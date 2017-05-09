@@ -25,13 +25,12 @@ class Choice
     private $description;
 
     /**
-    * Many Choices have Many Communities
-    */
-    private $communities;
+     * Many Choices have One Community.
+     */
+    private $community;
 
 
     public function __construct() {
-        $this->communities = new \Doctrine\Common\Collections\ArrayCollection();
     }
     /**
      * Get id
@@ -87,5 +86,9 @@ class Choice
     public function getDescription()
     {
         return $this->description;
+    }
+
+    public function __toString() {
+        return $this->title;
     }
 }

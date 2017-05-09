@@ -5,7 +5,9 @@
       <generator strategy="AUTO"/>
     </id>
     <field name="title" type="string" column="title" length="150"/>
-    <field name="description" type="text" column="description" nullable="true"/>
-    <many-to-many field="communities" mapped-by="choices" target-entity="AppBundle\Entity\Community"/>
+    <field name="description" type="string" column="description" nullable="true"/>
+    <many-to-one field="community" target-entity="Community" inversed-by="choices">
+      <join-column name="community_id" referenced-column-name="id" />
+    </many-to-one>
   </entity>
 </doctrine-mapping>

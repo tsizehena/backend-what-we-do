@@ -20,16 +20,17 @@ class NoteAdmin extends AbstractAdmin
     {
         $formMapper
             ->add('value', 'integer', array(
-                'label' => 'Valeur',
+                'label' => 'form.note.value',
                 'attr' => array(
                     'class' => 'note_size',
-                    'readonly' => true
+                    'readonly' => true,
+                    'required' => false
                 )
             ))
             ->add('description', 'text', array(
-                'label' => 'Libelle'
+                'label' => 'form.note.label'
             ))
-            // We use "hidden" because "button" isn't work in Sonata
+            // We use input type "hidden" to placeholder delete button because input type button isn't work in sonata
             ->add('delete', 'hidden', array(
                 'label' => '',
                 'mapped' => false
@@ -48,7 +49,6 @@ class NoteAdmin extends AbstractAdmin
                    ->add('description')
                    ->add('_action', null, array(
                        'actions' => array(
-                           //'show' => array(),
                            'edit' => array(),
                            'delete' => array(),
                        )

@@ -13,7 +13,24 @@ form:
     user:
         profile:
             penta: Penta
+        security:
+            roles: Roles
     event:
         community: Community
         campaign_begin: Start date of the campaign
         campaign_end: End date of the campaign
+    community:
+        create: Create event
+        note_min: Minimum score
+        note_max: Maximum score
+        note: Notes
+        choice: Choices
+        organizer: Organizers
+        participant: Participants
+    note:
+        value: Value
+        label: Label
+    participant:
+        email: Email
+        firstname: Firstname
+        lastname: Lastname

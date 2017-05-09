@@ -13,7 +13,24 @@ form:
     user:
         profile:
             penta: Pentagramme
+        security:
+            roles: Roles
     event:
         community: Communauté
         campaign_begin: Date de début de la campagne
         campaign_end: Date de fin de la campagne
+    community:
+        create: Créer un événement
+        note_min: Note minimale
+        note_max: Note maximale
+        note: Notes possibles
+        choice: Choix possibles
+        organizer: Organisateurs
+        participant: Participants
+    note:
+        value: Valeur
+        label: Libelle
+    participant:
+        email: Email
+        firstname: Prénom
+        lastname: Nom

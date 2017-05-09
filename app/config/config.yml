@@ -107,7 +107,6 @@ sonata_admin:
                 label_catalogue: AppBundle
                 icon: '<i class="fa fa-database"></i>'
                 items:
-                    - admin.activity
                     - admin.participant
                     - admin.community
                     - admin.event

@@ -30,15 +30,22 @@ class EventAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $container = $this->getConfigurationPool()->getContainer();
-        $user = $container->get('security.token_storage')->getToken()->getUser();
-        $communities = $user->getCommunities();
-        $community = sizeof($communities) > 0 ? $communities->first() : null;
+        $communityId = $container->get('session')->get('community_id');
+        $community = null;
+
+        if(!is_null($communityId)) {
+            $em =  $container->get('doctrine.orm.entity_manager');
+            $community = $em->getRepository('AppBundle:Community')->find($communityId);
+        }
+
         $formMapper
             ->add('community', 'entity', array(
                 'label' => 'form.event.community',
                 'class' => 'AppBundle:Community',
                 'choice_label' => 'title',
-                'required' => true
+                'required' => true,
+                'attr' => array(
+                )
             ))
             ->add('title', 'text', array(
                 'label' => 'form.title'
@@ -90,10 +97,17 @@ class EventAdmin extends AbstractAdmin
             ));
 
         $builder = $formMapper->getFormBuilder();
-        $factory = $builder->getFormFactory();
 
         $preListener = function (FormEvent $event) use ($formMapper, $community) {
             $form = $event->getForm();
+            $data = $event->getData();
+            if($event->getName() == FormEvents::PRE_SUBMIT) {
+                $data = $form->getData();
+            }
+
+            if (!is_null($data) && !is_null($data->getId())) {
+                $community = $data->getCommunity();
+            }
 
             if($community instanceof Community == true) {
                 //Remove choices field
@@ -151,6 +165,8 @@ class EventAdmin extends AbstractAdmin
 
             if($community instanceof Community == true && (!is_null($data) && is_null($data->getId()))) {
                 $form->get('participants')->setData($community->getParticipants());
+                $form->get('community')->setData($community);
+                dump($community->getId());
             }
         };
 

@@ -17,24 +17,15 @@ class CommunityAdmin extends AbstractAdmin
 {
     protected function configureFormFields(FormMapper $formMapper)
     {
-        $formMapper->add('title')
-            ->add('description')
-            ->add('noteMin', 'integer', array(
-                'label' => 'Note min',
-                'required' => false,
-                'attr' => array(
-                    'class' => 'note_size',
-                    'readonly' => true
-                ),
-                'data' => 0
-            ))->add('noteMax', 'integer', array(
-                'label' => 'Note max',
-                'required' => true,
-                'attr' => array(
-                    'class' => 'note_size note_max'
-                )
-            ))->add('notes', 'sonata_type_collection',
+        $formMapper->add('title', null, array(
+                'label' => 'form.title'
+            ))
+            ->add('description', null, array(
+                'label' => 'form.description'
+            ))
+            ->add('notes', 'sonata_type_collection',
                 array(
+                    'label' => 'form.community.note',
                     'by_reference' => false,
                     'cascade_validation' => true,
                     'type_options' => array(
@@ -43,23 +34,25 @@ class CommunityAdmin extends AbstractAdmin
                 array(
                     'edit' => 'inline',
                     'inline' => 'table'
-                ),
-                array('class' => 'role-wrapper')
-            )->add('choices', 'entity', array(
-                'label' => 'Choix',
-                'class' => 'AppBundle:Choice',
-                'choice_label' => 'title',
-                'required' => false,
-                'multiple' => true,
-                'expanded' => true
+            ))
+            ->add('choices', 'sonata_type_collection', array(
+                'label' => 'form.community.choice',
+                'by_reference' => false,
+                'cascade_validation' => true,
+                'type_options' => array(
+                    'delete' => false
+                )),
+                array(
+                    'edit' => 'inline',
+                    'inline' => 'table'
             ))->add('organizers', 'entity', array(
-                'label' => 'Organisateurs',
+                'label' => 'form.community.organizer',
                 'class' => 'ApplicationSonataUserBundle:User',
                 'choice_label' => 'email',
                 'required' => false,
                 'multiple' => true
             ))->add('participants', 'entity', array(
-                'label' => 'Participants',
+                'label' => 'form.community.participant',
                 'class' => 'AppBundle:Participant',
                 'choice_label' => 'email',
                 'required' => false,

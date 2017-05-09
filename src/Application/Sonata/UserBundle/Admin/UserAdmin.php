@@ -34,7 +34,7 @@ class UserAdmin extends \Sonata\UserBundle\Admin\Model\UserAdmin
         $formMapper->tab('User')
             ->with('Profile')
                 ->add('pentagramme', 'text', array(
-                    'label' => 'Pentagramme',
+                    'label' => 'form.user.profile.penta',
                     'required' => false
                 ))
             ->end();
@@ -49,6 +49,7 @@ class UserAdmin extends \Sonata\UserBundle\Admin\Model\UserAdmin
         $formMapper->end()->tab('Security')
             ->with('Roles', array('class' => 'col-md-8'))
                 ->add('roles','choice', array(
+                    'label' => 'form.user.security.roles',
                     'choices' =>  $rolesChoices,
                     'multiple'=> true,
                     'expanded' => true,
