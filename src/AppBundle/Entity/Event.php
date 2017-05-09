@@ -25,12 +25,6 @@ class Event
     private $description;
 
     /**
-     *  Many Events have Many days.
-     * @var \Doctrine\Common\Collections\ArrayCollection();
-     */
-    private $days;
-
-    /**
      * Many Events have One Community.
      */
     private $community;
@@ -164,39 +158,6 @@ class Event
     public function getCampaignEnd()
     {
         return $this->campaign_end;
-    }
-
-    /**
-     * Add days
-     *
-     * @param \AppBundle\Entity\Day $days
-     * @return Event
-     */
-    public function addDay(\AppBundle\Entity\Day $days)
-    {
-        $this->days[] = $days;
-
-        return $this;
-    }
-
-    /**
-     * Remove days
-     *
-     * @param \AppBundle\Entity\Day $days
-     */
-    public function removeDay(\AppBundle\Entity\Day $days)
-    {
-        $this->days->removeElement($days);
-    }
-
-    /**
-     * Get days
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getDays()
-    {
-        return $this->days;
     }
 
     /**

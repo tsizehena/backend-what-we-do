@@ -16,9 +16,9 @@ use Sonata\AdminBundle\Form\FormMapper;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use AppBundle\Entity\Community;
-use AppBundle\Entity\Choice;
 use AppBundle\Repository\ChoiceRepository;
 use Sonata\AdminBundle\Route\RouteCollection;
+use AppBundle\Repository\CommunityRepository;
 
 class EventAdmin extends AbstractAdmin
 {
@@ -30,6 +30,7 @@ class EventAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $container = $this->getConfigurationPool()->getContainer();
+        $user = $container->get('security.token_storage')->getToken()->getUser();
         $communityId = $container->get('session')->get('community_id');
         $community = null;
 
@@ -42,9 +43,16 @@ class EventAdmin extends AbstractAdmin
             ->add('community', 'entity', array(
                 'label' => 'form.event.community',
                 'class' => 'AppBundle:Community',
+                'query_builder' => function (CommunityRepository $er) use ($user) {
+                    return $er->createQueryBuilder('c')
+                        ->innerJoin('c.organizers', 'o')
+                        ->where('o.id = :id')
+                        ->setParameter('id', $user->getId());
+                },
                 'choice_label' => 'title',
                 'required' => true,
                 'attr' => array(
+                    'readonly' => 'readonly'
                 )
             ))
             ->add('title', 'text', array(
@@ -62,19 +70,11 @@ class EventAdmin extends AbstractAdmin
                 'label' => 'form.event.campaign_end',
                 'format' => 'dd-MM-yyyy'
             ))
-            ->add('days', 'entity', array(
-                'label' => 'Jours',
-                'class' => 'AppBundle:Day',
-                'choice_label' => 'description',
-                'required' => false,
-                'multiple' => true,
-                'expanded' => true
-            ))
             ->add('choices', 'entity', array(
                 'label' => 'Choix',
                 'class' => 'AppBundle:Choice',
                 'choice_label' => 'title',
-                'required' => false,
+                'required' => true,
                 'multiple' => true,
                 'expanded' => true
             ))
@@ -125,12 +125,11 @@ class EventAdmin extends AbstractAdmin
                         'class' => 'AppBundle:Choice',
                         'query_builder' => function (ChoiceRepository $er) use ($community) {
                             return $er->createQueryBuilder('c')
-                                ->innerJoin('c.communities', 'com')
-                                ->where('com.id = :id')
-                                ->setParameter('id', $community->getId());
+                                ->where('c.community = :community')
+                                ->setParameter('community', $community);
                         },
                         'choice_label' => 'title',
-                        'required' => false,
+                        'required' => true,
                         'multiple' => true,
                         'expanded' => true
                     ));

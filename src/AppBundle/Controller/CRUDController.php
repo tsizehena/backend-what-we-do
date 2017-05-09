@@ -8,9 +8,9 @@
 namespace AppBundle\Controller;
 
 use Sonata\AdminBundle\Controller\CRUDController as Controller;
-use Symfony\Component\BrowserKit\Request;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use AppBundle\Entity\Community;
+use AppBundle\Repository\CommunityRepository;
 
 class CRUDController extends Controller
 {
@@ -18,8 +18,9 @@ class CRUDController extends Controller
     {
         $user = $this->get('security.token_storage')->getToken()->getUser();
         $communities = $user->getCommunities();
+        $communityCount = sizeof($communities);
         // Redirect to event create form if use has single community
-        if(sizeof($communities) == 1) {
+        if($communityCount == 1) {
             $community = $communities->first();
             $this->get('session')->set('community_id', $community->getId());
             $this->get('session')->set('by_pass_community', 1);
@@ -35,6 +36,12 @@ class CRUDController extends Controller
                 ->add('community', 'entity', array(
                     'label' => 'form.event.community',
                     'class' => 'AppBundle:Community',
+                    'query_builder' => function (CommunityRepository $er) use ($user) {
+                        return $er->createQueryBuilder('c')
+                            ->innerJoin('c.organizers', 'o')
+                            ->where('o.id = :id')
+                            ->setParameter('id', $user->getId());
+                    },
                     'choice_label' => 'title',
                     'required' => true,
                     'attr' => array(
@@ -63,7 +70,8 @@ class CRUDController extends Controller
             return $this->render('AppBundle:CRUD:choice_community.html.twig', array(
                 'form' => $communityForm->createView(),
                 'action' => 'edit',
-                'object' => array()
+                'object' => array(),
+                'community_count' => $communityCount
             ));
         }
     }

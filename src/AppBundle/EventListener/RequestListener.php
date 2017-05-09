@@ -24,22 +24,20 @@ class RequestListener
     public function onKernelRequest(GetResponseEvent $event)
     {
         $request = $event->getRequest();
-
         $routeName = $request->get('_route');
-        $bypassCommunity = $this->container->get('session')->get('by_pass_community');
-
-        if ($routeName == "admin_app_event_create" && is_null($bypassCommunity)) {
-            $url = $this->container->get('router')->generate("admin_app_event_community");
+        if($routeName == "homepage") {
+            $url = $this->container->get('router')->generate("sonata_admin_dashboard");
             $response = new RedirectResponse($url);
             $event->setResponse($response);
         } else {
-            $this->container->get('session')->remove('by_pass_community');
+            $bypassCommunity = $this->container->get('session')->get('by_pass_community');
+            if ($routeName == "admin_app_event_create" && is_null($bypassCommunity) && !$request->isMethod('POST')) {
+                $url = $this->container->get('router')->generate("admin_app_event_community");
+                $response = new RedirectResponse($url);
+                $event->setResponse($response);
+            } else {
+                $this->container->get('session')->remove('by_pass_community');
+            }
         }
-/*
-        if (!$event->isMasterRequest()) {
-            // don't do anything if it's not the master request
-
-            return;
-        }*/
     }
 }
