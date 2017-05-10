@@ -39,3 +39,5 @@ form:
         email: Email
         firstname: Firstname
         lastname: Lastname
+list:
+    action: Action

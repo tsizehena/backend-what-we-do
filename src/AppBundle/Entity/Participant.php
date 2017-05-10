@@ -149,4 +149,9 @@ class Participant
     {
         return $this->communities;
     }
+
+    public function __toString()
+    {
+        return is_null($this->email) ? '' : $this->email;
+    }
 }

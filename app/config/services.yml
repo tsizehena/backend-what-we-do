@@ -35,3 +35,6 @@ services:
         tags:
           - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }
           #- { name: kernel.event_listener, event: kernel.response, method: onKernelResponse }
+    app.message_sender:
+        class:     AppBundle\Service\Message
+        arguments: [ '@service_container', '@templating', '@mailer' ]

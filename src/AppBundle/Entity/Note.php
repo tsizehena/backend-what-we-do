@@ -109,6 +109,6 @@ class Note
     }
 
     public function __toString() {
-        return $this->description;
+        return is_null($this->description) ? '' : $this->description;
     }
 }

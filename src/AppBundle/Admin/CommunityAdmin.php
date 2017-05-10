@@ -63,14 +63,15 @@ class CommunityAdmin extends AbstractAdmin
 
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
-        $datagridMapper->add('title');
+        $datagridMapper->add('title', null, array('label' => 'form.title'));
     }
 
     protected function configureListFields(ListMapper $listMapper)
     {
-        $listMapper->addIdentifier('title')
-                   ->add('description')
+        $listMapper->addIdentifier('title', null, array('label' => 'form.title'))
+                   ->add('description', null, array('label' => 'form.description'))
                    ->add('_action', null, array(
+                       'label' => 'list.action',
                        'actions' => array(
                            //'show' => array(),
                            'edit' => array(),

@@ -300,4 +300,9 @@ class Community
     {
         return $this->events;
     }
+
+    public function __toString()
+    {
+        return is_null($this->title) ? '' : $this->title;
+    }
 }

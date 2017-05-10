@@ -114,4 +114,5 @@ class Choice
     {
         return $this->community;
     }
+    
 }

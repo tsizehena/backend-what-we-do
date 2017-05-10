@@ -248,4 +248,22 @@ class Event
     {
         return $this->choices;
     }
+
+    public function participantsToArray() {
+        $listTmp = array();
+        $participants = $this->getParticipants();
+        if (sizeof($participants) > 0) {
+            foreach($participants as $item){
+                $listTmp[] = $item->getEmail();
+
+            }
+        }
+
+        return $listTmp;
+    }
+
+    public function __toString()
+    {
+        return is_null($this->title) ? '' : $this->title;
+    }
 }

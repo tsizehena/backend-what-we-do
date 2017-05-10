@@ -35,18 +35,19 @@ class ParticipantAdmin extends AbstractAdmin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            ->add('email')
-            ->add('firstname')
-            ->add('lastname');
+            ->add('email', null, array('label' => 'form.participant.email'))
+            ->add('firstname', null, array('label' => 'form.participant.firstname'))
+            ->add('lastname', null, array('label' => 'form.participant.lastname'));
     }
 
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->addIdentifier('email')
-            ->add('firstname')
-            ->add('lastname')
+            ->addIdentifier('email', null, array('label' => 'form.participant.email'))
+            ->add('firstname', null, array('label' => 'form.participant.firstname'))
+            ->add('lastname', null, array('label' => 'form.participant.lastname'))
             ->add('_action', null, array(
+            'label' => 'list.action',
             'actions' => array(
                 'edit' => array(),
                 'delete' => array(),

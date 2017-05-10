@@ -168,18 +168,19 @@ class EventAdmin extends AbstractAdmin
             }
         };
 
-        $postSubmitListener = function (FormEvent $event) use ($formMapper, $community) {
+        $postSubmitListener = function (FormEvent $event) use ($container, $formMapper, $community) {
             $form = $event->getForm();
             $data = $event->getData();
 
             if(!is_null($data)) {
                 $participants = $data->getParticipants();
                 if (sizeof($participants) > 0 && sizeof($form->get('send_mail')->getData())> 0) {
-                    foreach($participants as $item){
-                        //Send invitation email
-                        //dump($item->getEmail());
-                        
-                    }
+                    /*$isSended = $container->get('app.message_sender')->sendNotification($data);
+                    if($isSended) {
+                        $this->getFlashBag()->add('info', 'Notification envoyé');
+                    } else {
+                        $this->getFlashBag()->add('warning', 'Notification non envoyé');
+                    }*/
                 }
             }
         };
@@ -195,14 +196,19 @@ class EventAdmin extends AbstractAdmin
 
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
-        $datagridMapper->add('title');
+        $datagridMapper->add('title', null, array('label' => 'form.title'))
+        ->add('community', null, array('label' => 'form.event.community'));
     }
 
     protected function configureListFields(ListMapper $listMapper)
     {
-        $listMapper->addIdentifier('title')
-                   ->add('description')
+        $listMapper->addIdentifier('title', null, array('label' => 'form.title'))
+                   ->add('description', null, array('label' => 'form.description'))
+                    ->add('community', null, array(
+                        'label' => 'form.event.community',
+                        'link' => false))
                    ->add('_action', null, array(
+                       'label' => 'list.action',
                        'actions' => array(
                            //'show' => array(),
                            'edit' => array(),
@@ -239,5 +245,10 @@ class EventAdmin extends AbstractAdmin
     public function configure() {
         $this->setTemplate('edit', 'AppBundle:CRUD:form_event.html.twig');
         $this->setTemplate('create', 'AppBundle:CRUD:form_event.html.twig');
+    }
+
+    protected function getFlashBag()
+    {
+        return $this->getConfigurationPool()->getContainer()->get('session')->getFlashBag();
     }
 }
