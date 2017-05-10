@@ -19,6 +19,10 @@ form:
         community: Communauté
         campaign_begin: Date de début de la campagne
         campaign_end: Date de fin de la campagne
+        choice: Choix
+        participants: Participants
+        notification: Notification
+        send_notification: Envoyer des notifications
     community:
         create: Créer un événement
         note_min: Note minimale
@@ -27,6 +31,7 @@ form:
         choice: Choix possibles
         organizer: Organisateurs
         participant: Participants
+        empty_community: Vous ne pouvez pas créer un événement, car vous n'êtes pas affecté à une communauté.
     note:
         value: Valeur
         label: Libelle

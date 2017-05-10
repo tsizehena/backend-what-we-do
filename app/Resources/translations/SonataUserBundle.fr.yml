@@ -1,0 +1,6 @@
+form:
+    user:
+        profile:
+            penta: Pentagramme
+        security:
+            roles: Rôles

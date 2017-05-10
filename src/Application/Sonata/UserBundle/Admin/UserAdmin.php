@@ -53,7 +53,9 @@ class UserAdmin extends \Sonata\UserBundle\Admin\Model\UserAdmin
                     'choices' =>  $rolesChoices,
                     'multiple'=> true,
                     'expanded' => true,
-                    'required' => false
+                    'required' => false,
+                    'choice_translation_domain' => null,
+                    'translation_domain' => false
                     ))
                 ->end();
     }

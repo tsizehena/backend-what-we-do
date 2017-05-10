@@ -2,10 +2,9 @@
  * Created by mazaf on 05/05/17.
  */
 $(document).ready(function() {
+  //============================== Community Start ===================================
   var nbNoteMax = 11;
   var nbChoiceMax = 10;
-
-  //Community
   addDeleteButton('all');
 
   $('div.form-community-wrapper form').on('submit', function(event) {
@@ -40,7 +39,6 @@ $(document).ready(function() {
 
   $(document).on('sonata.add_element', function(event) {
     var targetId = event.target.id;
-    console.log(targetId);
     if(targetId.endsWith('choices')) {
       addDeleteButton('choices');
       if(parseInt($('span[id^="field_widget"][id$="_choices"] table tbody tr').length) >= nbChoiceMax) {
@@ -54,6 +52,12 @@ $(document).ready(function() {
       }
     }
   });
+  //============================== Community End =====================================
+
+  //============================== Event Start ===================================
+  //Disabled community select2 field
+  $('select[id$="_community"]').select2().select2("readonly", true);
+  //============================== Event Ent =====================================
 });
 
 

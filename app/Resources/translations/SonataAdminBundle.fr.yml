@@ -1,0 +1,6 @@
+menu:
+    item:
+        users: Utilisateurs
+        participants: Participants
+        communities: Communautés
+        events: Evénements

@@ -52,7 +52,7 @@ class EventAdmin extends AbstractAdmin
                 'choice_label' => 'title',
                 'required' => true,
                 'attr' => array(
-                    'readonly' => 'readonly'
+                    'id' => 'choice_community'
                 )
             ))
             ->add('title', 'text', array(
@@ -121,7 +121,7 @@ class EventAdmin extends AbstractAdmin
                 $formMapper->remove('send_mail');
                 //Add customize choices field
                 $form->add('choices', 'entity', array(
-                        'label' => 'Choix',
+                        'label' => 'form.event.choice',
                         'class' => 'AppBundle:Choice',
                         'query_builder' => function (ChoiceRepository $er) use ($community) {
                             return $er->createQueryBuilder('c')
@@ -136,7 +136,7 @@ class EventAdmin extends AbstractAdmin
                 $formMapper->add('choices');
 
                 $form->add('participants', 'entity', array(
-                    'label' => 'Participants',
+                    'label' => 'form.event.participants',
                     'class' => 'AppBundle:Participant',
                     'choice_label' => 'email',
                     'required' => false,
@@ -145,9 +145,9 @@ class EventAdmin extends AbstractAdmin
                 $formMapper->add('participants');
 
                 $form->add('send_mail', 'choice', array(
-                    'label' => 'Notification',
+                    'label' => 'form.event.notification',
                     'choices' => array(
-                        1 => 'Envoyer des notifications'
+                        1 => 'form.event.send_notification'
                     ),
                     'multiple' => true,
                     'mapped' => false,
@@ -178,6 +178,7 @@ class EventAdmin extends AbstractAdmin
                     foreach($participants as $item){
                         //Send invitation email
                         //dump($item->getEmail());
+                        
                     }
                 }
             }
@@ -208,5 +209,35 @@ class EventAdmin extends AbstractAdmin
                            'delete' => array(),
                        )
                    ));
+    }
+
+    /**
+     * Customize event list
+     *
+     * @param string $context
+     * @return \Sonata\AdminBundle\Datagrid\ProxyQueryInterface
+     */
+    public function createQuery($context = 'list')
+    {
+        $container = $this->getConfigurationPool()->getContainer();
+        $user = $container->get('security.token_storage')->getToken()->getUser();
+
+        $query = parent::createQuery($context);
+        $query->innerJoin($query->getRootAliases()[0] . '.community', 'c')
+              ->innerJoin('c.organizers', 'org');
+        $query->andWhere(
+            $query->expr()->eq('org.id', ':user_id')
+        );
+        $query->setParameter('user_id', $user->getId());
+
+        return $query;
+    }
+
+    /**
+     * Customize event form
+     */
+    public function configure() {
+        $this->setTemplate('edit', 'AppBundle:CRUD:form_event.html.twig');
+        $this->setTemplate('create', 'AppBundle:CRUD:form_event.html.twig');
     }
 }

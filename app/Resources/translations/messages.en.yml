@@ -19,6 +19,10 @@ form:
         community: Community
         campaign_begin: Start date of the campaign
         campaign_end: End date of the campaign
+        choice: Choices
+        participants: Participants
+        notification: Notification
+        send_notification: Send notification
     community:
         create: Create event
         note_min: Minimum score
@@ -27,6 +31,7 @@ form:
         choice: Choices
         organizer: Organizers
         participant: Participants
+        empty_community: You can not create an event because you are not assigned to a community.
     note:
         value: Value
         label: Label
