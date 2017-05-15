@@ -1,0 +1,4 @@
+events:
+     type:       rest
+     resource:   ApiBundle\Controller\EventController
+     prefix :    /

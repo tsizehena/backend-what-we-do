@@ -24,6 +24,8 @@
         "friendsofsymfony/rest-bundle": "^2.1",
         "incenteev/composer-parameter-handler": "~2.0",
         "nelmio/api-doc-bundle": "^2.13",
+        "jms/serializer-bundle": "^1.1",
+        "nelmio/cors-bundle": "^1.4",
         "sensio/distribution-bundle": "~4.0",
         "sensio/framework-extra-bundle": "^3.0.2",
         "sonata-project/admin-bundle": "^3.17",
