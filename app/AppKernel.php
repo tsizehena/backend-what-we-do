@@ -25,10 +25,16 @@ class AppKernel extends Kernel
             new Sonata\DoctrineORMAdminBundle\SonataDoctrineORMAdminBundle(),
             new Sonata\AdminBundle\SonataAdminBundle(),
             new Sonata\EasyExtendsBundle\SonataEasyExtendsBundle(),
+
+            new JMS\SerializerBundle\JMSSerializerBundle(),
+            new FOS\RestBundle\FOSRestBundle(),
             new FOS\UserBundle\FOSUserBundle(),
+            new Nelmio\CorsBundle\NelmioCorsBundle(),
+            new Nelmio\ApiDocBundle\NelmioApiDocBundle(),
             new Sonata\UserBundle\SonataUserBundle('FOSUserBundle'),
             new Application\Sonata\UserBundle\ApplicationSonataUserBundle(),
-            new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle()
+            new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
+            new ApiBundle\ApiBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'), true)) {

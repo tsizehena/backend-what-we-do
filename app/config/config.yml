@@ -2,6 +2,7 @@ imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: services.yml }
+    - { resource: "@ApiBundle/Resources/config/services.yml" }
 
 # Put parameters here that don't need to change on each machine where the app is deployed
 # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
@@ -147,3 +148,27 @@ fos_user:
 
     service:
         user_manager: sonata.user.orm.user_manager
+
+fos_rest:
+    param_fetcher_listener: true
+    body_listener: true
+    body_converter:
+        enabled: true
+        validate: true
+        validation_errors_argument: violations
+    format_listener: true
+    serializer:
+        serialize_null: true
+    view:
+        view_response_listener: 'force'
+        formats:
+            xml: true
+            json : true
+        templating_formats:
+            html: true
+        force_redirects:
+            html: true
+        failed_validation: HTTP_BAD_REQUEST
+        default_engine: twig
+    routing_loader:
+        default_format: json
